@@ -1,0 +1,51 @@
+<!doctype html>
+
+<html>
+  <head>
+    <title>is-restricted test</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../is-restricted.html">
+  </head>
+  <body>
+
+    <test-fixture id="basic">
+      <template>
+        <is-restricted></is-restricted>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="restricted">
+      <template>
+        <is-restricted restricted="true"></is-restricted>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('is-restricted', function() {
+        var element = fixture('basic');
+        var restricted = fixture('restricted');
+
+        test('instantiating the element works', function() {
+          assert.equal(element.is, 'is-restricted');
+        });
+
+        test('testing restricted false', function() {
+          let li = element.querySelector('li');
+          assert.equal(null, li);
+          assert.equal(element.restricted, false);
+        });
+
+        test('testing restricted true', function() {
+          let li = restricted.querySelector('li');
+          assert.equal(restricted.children[0], li);
+          assert.equal(restricted.restricted, true);
+        });
+
+      });
+    </script>
+  </body>
+</html>

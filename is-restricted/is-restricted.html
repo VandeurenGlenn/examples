@@ -1,0 +1,47 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+`is-restricted`
+
+
+@demo demo/index.html
+-->
+
+<dom-module id="is-restricted">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <template is="dom-if" if="[[_computeRestricted(restricted)]]">
+      <li title="Restricted">
+        <div class="status-icon">
+          <i class="fa fa-flag"></i>
+        </div>
+      </li>
+    </template>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'is-restricted',
+
+      properties: {
+        restricted: {
+          type: Boolean,
+          value: false
+        },
+      },
+
+      _computeRestricted: function(restricted) {
+        if (restricted) {
+          return true;
+        }
+        return false;
+      }
+
+    });
+  </script>
+</dom-module>
